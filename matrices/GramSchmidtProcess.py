@@ -2,6 +2,16 @@
 import numpy as np
 import numpy.linalg as la
 
+
+# Understanding the Gram-Schmidt Process
+# Orthogonalization: The main idea is to take each vector
+# in the set, and adjust it to be orthogonal to all previously 
+# processed vectors in the set. This is done by subtracting from
+# the current vector its projection onto each of the previously processed vectors.
+# Normalization: After making a vector orthogonal to all the preceding vectors,
+# the next step is to normalize it, which means adjusting its length to 1. This is 
+# done by dividing the vector by its norm (length).
+
 verySmallNumber = 1e-14 # That's 1×10⁻¹⁴ = 0.00000000000001
 
 # Our first function will perform the Gram-Schmidt procedure for 4 basis vectors.
@@ -74,3 +84,34 @@ def gsBasis(A):
 # the sum of all the norms will be the dimension.
 def dimensions(A) :
     return np.sum(la.norm(gsBasis(A), axis=0))
+
+# Example vectors in 2D
+A = np.array([[1, 1],
+              [0, 1]])
+
+# Apply Gram-Schmidt
+orthonormal_basis = gsBasis4(A)
+print("Orthonormal basis for the provided vectors:")
+print(orthonormal_basis)
+
+
+# Example vectors in 3D
+A = np.array([[1, 1, 1],
+              [1, 0, 1],
+              [0, 1, 1]])
+
+# Apply Gram-Schmidt
+orthonormal_basis = gsBasis(A)
+print("Orthonormal basis for the provided 3D vectors:")
+print(orthonormal_basis)
+
+
+# Linearly dependent vectors in 3D
+A = np.array([[1, 2, 3],
+              [2, 4, 6],
+              [3, 6, 9]])
+
+# Apply Gram-Schmidt
+orthonormal_basis = gsBasis(A)
+print("Orthonormal basis for the provided linearly dependent vectors:")
+print(orthonormal_basis)
