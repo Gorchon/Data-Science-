@@ -73,18 +73,23 @@ from readonly.bearNecessities import *
 
 
 
-def build_reflection_matrix(bearBasis):
-    # Step 1: Create an orthonormal basis from bearBasis using Gram-Schmidt process
+# GRADED FUNCTION
+# This is the cell you should edit and submit.
+
+# In this function, you will return the transformation matrix T,
+# having built it out of an orthonormal basis set E that you create from Bear's Basis
+# and a transformation matrix in the mirror's coordinates TE.
+def build_reflection_matrix(bearBasis) : # The parameter bearBasis is a 2×2 matrix that is passed to the function.
+    # Use the gsBasis function on bearBasis to get the mirror's orthonormal basis.
     E = gsBasis(bearBasis)
-    
-    # Step 2: Define the reflection matrix in the orthonormal basis
+    # Write a matrix in component form that perform's the mirror's reflection in the mirror's basis.
+    # Recall, the mirror operates by negating the last component of a vector.
+    # Replace a,b,c,d with appropriate values
     TE = np.array([[1, 0],
                    [0, -1]])
-    
-    # Step 3: Combine the matrices to produce the transformation matrix T
-    T = E @ TE @ inv(E)
-    
-    # Return the transformation matrix
+    # Combine the matrices E and TE to produce your transformation matrix.
+    T = E @ TE @ transpose(E) # could be inv(E), but E is orthonormal so it is simpler to use transpose 
+    # Finally, we return the result. There is no need to change this line.
     return T
 
 
